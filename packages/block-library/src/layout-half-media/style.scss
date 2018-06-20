@@ -1,0 +1,27 @@
+.wp-block-half-media,
+.wp-block-half-media.aligncenter {
+	display: grid;
+	grid-template-columns: fit-content(50%) auto;
+	grid-template-rows: auto;
+	grid-template-areas: "half-media-media half-media-content";
+	align-items: center;
+	column-gap: 25px;
+}
+
+.wp-block-half-media .wp-block-half-media__media {
+	grid-area: half-media-media;
+}
+
+.wp-block-half-media .wp-block-half-media__content {
+	word-break: break-word;
+	grid-area: half-media-content;
+}
+.wp-block-half-media.has-media-on-the-right {
+	grid-template-columns: auto fit-content(50%);
+	grid-template-areas: "half-media-content half-media-media";
+}
+
+.wp-block-half-media > figure > img,
+.wp-block-half-media > figure > video {
+	max-width: unset;
+}

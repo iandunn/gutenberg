@@ -1,0 +1,9 @@
+.editor-media-container__resize-handler {
+	border-radius: 50%;
+	border: 2px solid $white;
+	width: 16px !important;
+	height: 16px !important;
+	position: absolute !important;
+	background: theme(primary);
+	top: calc(50% - 9px) !important;
+}
