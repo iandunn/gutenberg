@@ -39,7 +39,7 @@ const MoreMenu = () => (
 					filterName="editPost.MoreMenu.tools"
 				>
 					<TipsToggle onToggle={ onClose } />
-					<PrePublishPanelToggle />
+					<PrePublishPanelToggle onToggle={ onClose } />
 					<KeyboardShortcutsHelpMenuItem onSelect={ onClose } />
 				</MenuGroup>
 			</Fragment>
