@@ -438,7 +438,7 @@ export default class TableEdit extends Component {
 							<TextControl
 								type="number"
 								className="block-library-table__dimensions__width"
-								label={ __( 'Width' ) }
+								label={ `${ __( 'Width' ) } (${ widthUnit })` }
 								value={ width !== undefined ? width : '' }
 								min={ 1 }
 								onChange={ this.onChangeWidth }
@@ -462,7 +462,7 @@ export default class TableEdit extends Component {
 						<TextControl
 							type="number"
 							className="block-library-table__dimensions__height"
-							label={ __( 'Height' ) }
+							label={ __( 'Height (px)' ) }
 							value={ height !== undefined ? height : '' }
 							min={ 1 }
 							onChange={ this.onChangeHeight }
