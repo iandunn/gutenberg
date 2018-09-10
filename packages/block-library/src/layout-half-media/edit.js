@@ -115,12 +115,12 @@ class ImageEdit extends Component {
 			label: __( 'Background Color' ),
 		} ];
 		const toolbarControls = [ {
-			icon: 'align-left',
+			icon: 'align-pull-left',
 			title: __( 'Show media on left' ),
 			isActive: mediaPosition === 'left',
 			onClick: () => setAttributes( { mediaPosition: 'left' } ),
 		}, {
-			icon: 'align-left',
+			icon: 'align-pull-right',
 			title: __( 'Show media on right' ),
 			isActive: mediaPosition === 'right',
 			onClick: () => setAttributes( { mediaPosition: 'right' } ),
