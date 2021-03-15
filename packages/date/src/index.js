@@ -525,3 +525,8 @@ function isUTCOffset( offset ) {
 }
 
 setupWPTimezone();
+
+function foo() {
+	return 5;
+}
+foo();
