@@ -14,13 +14,13 @@ const debug = require( '../../debug' );
  * @param {WebhookPayloadPullRequest} payload Pull request event payload.
  * @param {GitHub}                    octokit Initialized Octokit REST client.
  */
-async function firstTimeContributorLabel( payload, octokit ) {
+async function prPreviewLink( payload, octokit ) {
 	const repo = payload.repository.name;
 	const owner = payload.repository.owner.login;
 	const author = payload.pull_request.user.login;
 
 	debug(
-		`first-time-contributor: Searching for commits in ${ owner }/${ repo } by @${ author }`
+		`pr-preview-link: Searching for commits in ${ owner }/${ repo } by @${ author }`
 	);
 
 	//const { data: commits } = await octokit.repos.listCommits( {
@@ -43,7 +43,7 @@ async function firstTimeContributorLabel( payload, octokit ) {
 	const pullRequestNumber = payload.pull_request.number;
 
 	debug(
-		`first-time-contributor-label: Adding 'First Time Contributor' label to pr #${ pullRequestNumber }`
+		`pr-preview-link: Adding 'First Time Contributor' label to pr #${ pullRequestNumber }`
 	);
 
 	//await octokit.issues.addLabels( {
@@ -66,10 +66,8 @@ async function firstTimeContributorLabel( payload, octokit ) {
 			'Preview site for this PR: http://gutenberg.run/' +
 			pullRequestNumber +
 			' - ' +
-			payload.pull_request.number,
-		// do template literal
-		// add more text
+			payload.pull_request.number,// just in case
 	} );
 }
 
-module.exports = firstTimeContributorLabel;
+module.exports = prPreviewLink;

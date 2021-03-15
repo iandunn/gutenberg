@@ -42,7 +42,12 @@ const automations = [
 	},
 	{
 		event: 'pull_request',
+		action: 'opened',
 		task: prPreviewLink,
+
+		// this isn't working
+
+		// make sure runs after build artificat created
 	},
 	{
 		event: 'pull_request_target',
@@ -58,6 +63,8 @@ const automations = [
 		task: addMilestone,
 	},
 ];
+
+debug( 'pr func type: ' + typeof( prPreviewLink ) );
 
 ( async function main() {
 	const token = getInput( 'github_token' );
