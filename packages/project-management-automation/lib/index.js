@@ -41,7 +41,8 @@ const automations = [
 		task: assignFixedIssues,
 	},
 	{
-		event: 'pull_request',
+		event: 'pull_request_target',
+			// trying target b/c regular not working, but ideally want regular for sec reasons
 		action: 'opened',
 		task: prPreviewLink,
 
