@@ -1,9 +1,5 @@
 // todo update everything
 
-
-
-
-
 /**
  * Internal dependencies
  */
@@ -33,9 +29,8 @@ async function firstTimeContributorLabel( payload, octokit ) {
 	//	author,
 	//} );
 
-
-    // if this is a push, return (not during testing though)
-		// already done by the way it's regstered? test by pushing addition commits to branch
+	// if this is a push, return (not during testing though)
+	// already done by the way it's regstered? test by pushing addition commits to branch
 
 	//if ( false ) {
 	//	debug(
@@ -66,11 +61,14 @@ async function firstTimeContributorLabel( payload, octokit ) {
 		owner,
 		repo,
 		issue_number: payload.pull_request.number,
-			// replace ^ w/ pullRequestNumber
+		// replace ^ w/ pullRequestNumber
 		body:
-			'Preview site for this PR: http://gutenberg.run/' + pullRequestNumber + ' - ' + payload.pull_request.number
-			// do template literal
-			// add more text
+			'Preview site for this PR: http://gutenberg.run/' +
+			pullRequestNumber +
+			' - ' +
+			payload.pull_request.number,
+		// do template literal
+		// add more text
 	} );
 }
 
