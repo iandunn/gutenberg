@@ -29,7 +29,7 @@ async function firstTimeContributorLabel( payload, octokit ) {
 
 	if ( commits.length > 0 ) {
 		debug(
-			`first-time-contributor-label: Not the first commit for author. Aborting`
+			`first-time-contributor-label: [test mods in trunk] Not the first commit for author. Aborting`
 		);
 		return;
 	}

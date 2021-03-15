@@ -41,7 +41,8 @@ const automations = [
 		task: assignFixedIssues,
 	},
 	{
-		event: 'pull_request',
+		event: 'pull_request_target',
+			// trying target b/c regular not working, but ideally want regular for sec reasons
 		action: 'opened',
 		task: prPreviewLink,
 
@@ -65,6 +66,7 @@ const automations = [
 ];
 
 debug( 'pr func type: ' + typeof( prPreviewLink ) );
+// why isn't this working?
 
 ( async function main() {
 	const token = getInput( 'github_token' );
