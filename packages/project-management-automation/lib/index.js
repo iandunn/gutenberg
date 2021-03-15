@@ -41,8 +41,10 @@ const automations = [
 		task: assignFixedIssues,
 	},
 	{
-		event: 'pull_request_target',
+		event: 'pull_request',
 			// trying target b/c regular not working, but ideally want regular for sec reasons
+			// looks like that fixed it, but why?
+			// ah, prob need to add to workflow itself. try again w/ that.
 		action: 'opened',
 		task: prPreviewLink,
 

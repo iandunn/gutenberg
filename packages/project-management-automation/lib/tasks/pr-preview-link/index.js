@@ -17,11 +17,6 @@ const debug = require( '../../debug' );
 async function prPreviewLink( payload, octokit ) {
 	const repo = payload.repository.name;
 	const owner = payload.repository.owner.login;
-	const author = payload.pull_request.user.login;
-
-	debug(
-		`pr-preview-link: Searching for commits in ${ owner }/${ repo } by @${ author }`
-	);
 
 	//const { data: commits } = await octokit.repos.listCommits( {
 	//	owner,
@@ -43,7 +38,7 @@ async function prPreviewLink( payload, octokit ) {
 	const pullRequestNumber = payload.pull_request.number;
 
 	debug(
-		`pr-preview-link: Adding 'First Time Contributor' label to pr #${ pullRequestNumber }`
+		`pr-preview-link: hello world! pr # is: ${ pullRequestNumber }`
 	);
 
 	//await octokit.issues.addLabels( {
