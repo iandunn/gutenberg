@@ -1,11 +1,9 @@
-// todo update everything
-
 /**
  * Internal dependencies
  */
-import firstTimeContributorLabel from '../';
+import prPreviewLink from '../';
 
-describe( 'firstTimeContributorLabel', () => {
+describe( 'prPreviewLink', () => {
 	const payload = {
 		repository: {
 			owner: {
@@ -14,42 +12,11 @@ describe( 'firstTimeContributorLabel', () => {
 			name: 'gutenberg',
 		},
 		pull_request: {
-			user: {
-				login: 'ghost',
-			},
 			number: 123,
 		},
 	};
 
-	it( 'does nothing if the user has at least one commit', async () => {
-		const octokit = {
-			repos: {
-				listCommits: jest.fn( () =>
-					Promise.resolve( {
-						data: [
-							{ sha: '4c535288a6a2b75ff23ee96c75f7d9877e919241' },
-						],
-					} )
-				),
-			},
-			issues: {
-				addLabels: jest.fn(),
-				createComment: jest.fn(),
-			},
-		};
-
-		await firstTimeContributorLabel( payload, octokit );
-
-		expect( octokit.repos.listCommits ).toHaveBeenCalledWith( {
-			owner: 'WordPress',
-			repo: 'gutenberg',
-			author: 'ghost',
-		} );
-		expect( octokit.issues.addLabels ).not.toHaveBeenCalled();
-		expect( octokit.issues.createComment ).not.toHaveBeenCalled();
-	} );
-
-	it( 'adds the First Time Contributor label if the user has no commits', async () => {
+	it( 'adds the adds a comment with a link to the gutenberg.run preview site', async () => {
 		const octokit = {
 			repos: {
 				listCommits: jest.fn( () =>
@@ -59,30 +26,14 @@ describe( 'firstTimeContributorLabel', () => {
 				),
 			},
 			issues: {
-				addLabels: jest.fn(),
 				createComment: jest.fn(),
 			},
 		};
 
-		const expectedComment =
-			':wave: Thanks for your first Pull Request and for helping build the future of Gutenberg and WordPress, @ghost' +
-			"! In case you missed it, we'd love to have you join us in our [Slack community](https://make.wordpress.org/chat/)," +
-			' where we hold [regularly weekly meetings](https://make.wordpress.org/core/tag/core-editor-summary/) open to anyone to coordinate with each other.\n\n' +
-			'If you want to learn more about WordPress development in general, check out the [Core Handbook](https://make.wordpress.org/core/handbook/) full of helpful information.';
+		const expectedComment = `Preview site for this PR: http://gutenberg.run/123`;
 
-		await firstTimeContributorLabel( payload, octokit );
+		await prPreviewLink( payload, octokit );
 
-		expect( octokit.repos.listCommits ).toHaveBeenCalledWith( {
-			owner: 'WordPress',
-			repo: 'gutenberg',
-			author: 'ghost',
-		} );
-		expect( octokit.issues.addLabels ).toHaveBeenCalledWith( {
-			owner: 'WordPress',
-			repo: 'gutenberg',
-			issue_number: 123,
-			labels: [ 'First-time Contributor' ],
-		} );
 		expect( octokit.issues.createComment ).toHaveBeenCalledWith( {
 			owner: 'WordPress',
 			repo: 'gutenberg',
@@ -91,5 +42,3 @@ describe( 'firstTimeContributorLabel', () => {
 		} );
 	} );
 } );
-
-// add test for pr link

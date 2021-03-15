@@ -42,15 +42,8 @@ const automations = [
 	},
 	{
 		event: 'pull_request_target',
-		// trying target b/c regular not working, but ideally want regular for sec reasons
-		// looks like that fixed it, but why?
-		// ah, prob need to add to workflow itself. try again w/ that.
 		action: 'opened',
 		task: prPreviewLink,
-
-		// this isn't working with just pull_request, have to use _target
-
-		// make sure runs after build artificat created
 	},
 	{
 		event: 'pull_request_target',
@@ -66,9 +59,6 @@ const automations = [
 		task: addMilestone,
 	},
 ];
-
-debug( 'pr func type: ' + typeof prPreviewLink );
-// why isn't this working?
 
 ( async function main() {
 	const token = getInput( 'github_token' );
