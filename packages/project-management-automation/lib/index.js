@@ -41,14 +41,14 @@ const automations = [
 		task: assignFixedIssues,
 	},
 	{
-		event: 'pull_request',
-			// trying target b/c regular not working, but ideally want regular for sec reasons
-			// looks like that fixed it, but why?
-			// ah, prob need to add to workflow itself. try again w/ that.
+		event: 'pull_request_target',
+		// trying target b/c regular not working, but ideally want regular for sec reasons
+		// looks like that fixed it, but why?
+		// ah, prob need to add to workflow itself. try again w/ that.
 		action: 'opened',
 		task: prPreviewLink,
 
-		// this isn't working
+		// this isn't working with just pull_request, have to use _target
 
 		// make sure runs after build artificat created
 	},
@@ -67,7 +67,7 @@ const automations = [
 	},
 ];
 
-debug( 'pr func type: ' + typeof( prPreviewLink ) );
+debug( 'pr func type: ' + typeof prPreviewLink );
 // why isn't this working?
 
 ( async function main() {
