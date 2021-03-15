@@ -1,10 +1,9 @@
-todo update
-
-First Time Contributor Label
+PR Preview Link
 ===
 
-Adds the "First Time Contributor" label to pull requests merged on behalf of contributors that have not previously made a contribution.
+Adds a comment to new PRs with a link to `http://gutenberg.run/{pr number}`.
+
 
 ## Rationale
 
-The label is useful for pull request reviewers in identifying newcomers to the project who can be offered extra guidance.
+Preview sites make PRs much easier to test, especially for folks who don't have a dev environment setup.
