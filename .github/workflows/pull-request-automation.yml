@@ -2,6 +2,13 @@ on:
   pull_request_target:
     types: [opened]
   push:
+  workflow_run:
+    # The workflow started by the workflow_run event is able to access secrets and write tokens, even if the previous workflow was not. This is useful in cases where the previous workflow is intentionally not privileged, but you need to take a privileged action in a later workflow.
+    # does ^ present security problems? need to document any cautions?
+    #workflows: ["Build Gutenberg Plugin Zip"]
+#    branches: [main]
+    #types:
+     # - completed
 name: Pull request automation
 
 jobs:

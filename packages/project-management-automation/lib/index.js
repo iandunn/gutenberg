@@ -28,6 +28,7 @@ const debug = require( './debug' );
  *
  * @property {string}           event    Webhook event name to match.
  * @property {string}           [action] Action to match, if applicable.
+ * @property {string}           [workflow] Workflow to match, if applicable.
  * @property {WPAutomationTask} task     Task to run.
  */
 
@@ -41,8 +42,9 @@ const automations = [
 		task: assignFixedIssues,
 	},
 	{
-		event: 'pull_request_target',
-		action: 'opened',
+		event: 'workflow_run',
+		action: 'completed',
+		workflow: 'Build Gutenberg Plugin Zip',
 		task: prPreviewLink,
 	},
 	{
@@ -70,13 +72,18 @@ const automations = [
 	const octokit = new GitHub( token );
 
 	debug(
-		`main: Received event = '${ context.eventName }', action = '${ context.payload.action }'`
+		`main: Received event = '${ context.eventName }', action = '${ context.payload.action }', workflow = '${ context.payload.workflow }'`
 	);
 
-	for ( const { event, action, task } of automations ) {
+	for ( const { event, action, workflow, task } of automations ) {
+		debug( JSON.stringify( context.payload ) );
+
 		if (
 			event === context.eventName &&
-			( action === undefined || action === context.payload.action )
+			( action === undefined || action === context.payload.action ) &&
+			( workflow === undefined || workflow === context.payload.workflow )
+			// is path to payload.workflow correct?
+			// i think so -- https://docs.github.com/en/developers/webhooks-and-events/webhook-events-and-payloads#workflow_run
 		) {
 			try {
 				debug( `main: Starting task ${ task.name }` );

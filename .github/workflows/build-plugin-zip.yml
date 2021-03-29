@@ -162,6 +162,32 @@ jobs:
           name: release-notes
           path: ./release-notes.txt
 
+#    add-preview-link-comment:
+#      name: Add comment to PR with link to gutenberg.run preview site
+#      needs: build
+#      runs-on: ubuntu-latest
+#      # if pull request and open, not on close/push/etc
+#      steps:
+#        - name: 'Comment on PR'
+#          uses: actions/github-script@v3
+#          with:
+#            github-token: ${{ secrets.GITHUB_TOKEN }}
+#            # is it safe to use ^ here? i think so, b/c not running the pr code.
+#            # other workflow already does it
+#            script: |
+#              var fs = require('fs');
+#              var issue_number = Number(fs.readFileSync('./NR'));
+#              //var pr_number = Number( ${{ github.event.number }} );
+#                // is ^ different in pull_request_target
+#              var pr_number = 1;
+#              await github.issues.createComment({
+#                owner: context.repo.owner,
+#                repo: context.repo.repo,
+#                issue_number: issue_number,
+#                body: 'Everything is OK. Thank you for the PR!'
+#              });
+
+
   create-release:
     name: Create Release Draft and Attach Asset
     needs: [bump-version, build]
