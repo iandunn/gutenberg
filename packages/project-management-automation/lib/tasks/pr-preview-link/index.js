@@ -19,6 +19,8 @@ async function prPreviewLink( payload, octokit ) {
 
 	debug( 'pr-preview-link: Adding comment to PR.' );
 
+	// need to detect if the `build` workflow successfully concluded?
+
 	await octokit.issues.createComment( {
 		owner,
 		repo,
