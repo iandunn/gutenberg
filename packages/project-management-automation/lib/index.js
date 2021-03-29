@@ -43,8 +43,8 @@ const automations = [
 	},
 	{
 		event: 'workflow_run',
-		action: 'completed',
 		workflow: 'Build Gutenberg Plugin Zip',
+		action: 'completed',
 		task: prPreviewLink,
 	},
 	{
