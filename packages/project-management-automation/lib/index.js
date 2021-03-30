@@ -76,7 +76,9 @@ const automations = [
 	);
 
 	for ( const { event, action, workflow, task } of automations ) {
-		debug( JSON.stringify( context.payload ) );
+		if ( 'workflow_run' === event ) {
+			debug( JSON.stringify( context.payload ) );
+		}
 
 		if (
 			event === context.eventName &&

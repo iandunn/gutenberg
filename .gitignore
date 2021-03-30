@@ -12,6 +12,7 @@ gutenberg.zip
 phpcs.xml
 yarn.lock
 /artifacts
+.secrets
 
 .cache
 *.tsbuildinfo
